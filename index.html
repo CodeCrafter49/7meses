@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>7 meses</title>
+</head>
+
+<body>
+    <div class="modal2" id="audio-modal">
+        <div class="modal2-content2">
+            <h1 style="color: black;">Feliz 7 meses mi amor 🥰😇</h1>
+            <button id="play-button" onclick="iniciarMusica()">😘 Iniciar el Juego 🎵</button>
+        </div>
+    </div>
+
+    <audio id="background-audio" src="juego.mp3" loop></audio>
+    <div class="greetings">
+        <span>A</span>
+        <span>m</span>
+        <span>o</span>
+        <span>r</span>
+        <span>!</span>
+    </div>
+    <div class="description">
+        ❤️ Mi Andreita Hermosa Bella 🥰😘 7 meses juntos...
+    </div>
+    <div class="gif-container">
+        <img src="https://i.pinimg.com/originals/6a/a9/1b/6aa91ba176b0d682b136153ebcb5e352.gif" alt="Un abrazo tierno">
+        <img src="https://media.tenor.com/y5P9LiggUTwAAAAM/rat-jimp.gif" alt="Un burrito feliz">
+    </div>
+    <button class="botones" onclick="abrirModal()">😇 ¡Presióname Aquí! 😇</button>
+    <div id="particle-container"></div>
+
+    <div class="modal" id="miModal">
+        <div class="modal-content">
+            <h2>¡Hola, mi amor! 🥰</h2>
+            <p>Por favor, ingresa la información que se te pide:</p>
+            <form id="infoForm">
+                <div class="form-row">
+
+                    <div class="column">
+                        <div class="form-group">
+                            <label for="fechaCumpleBurrito">Fecha de cumpleaños de Burrito</label>
+                            <input type="date" id="fechaCumpleBurrito" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="colorBurrito">Color favorito de Burrito</label>
+                            <input type="text" id="colorBurrito" required>
+                        </div>
+                    </div>
+
+                    <div class="form-center">
+                        <div class="form-group">
+                            <label for="fechaRel">Fecha de nuestra relación</label>
+                            <input type="date" id="fechaRel" required>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div class="form-group">
+                            <label for="fechaCumpleRatita">Fecha de cumpleaños de Ratita</label>
+                            <input type="date" id="fechaCumpleRatita" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="colorRatita">Color favorito de Ratita</label>
+                            <input type="text" id="colorRatita" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-footer">
+                    <button type="button" onclick="verificarInfo()">Enviar</button>
+                    <div id="mensaje" class="carita"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('background-audio');
+        const playButton = document.getElementById('play-button');
+        const modal = document.getElementById('audio-modal');
+
+        function iniciarMusica() {
+            audio.play()
+                .then(() => {
+                    console.log("Música iniciada correctamente.");
+                    playButton.style.display = "none";
+                    setTimeout(() => {
+                        modal.style.display = "none";
+                    }, 3000);
+                })
+                .catch(error => {
+                    console.error("Error al iniciar la música:", error);
+                });
+        }
+
+        window.onload = () => {
+            modal.style.display = "flex";
+        };
+
+        function abrirModal() {
+            document.getElementById('miModal').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('miModal').style.display = 'none';
+        }
+
+        const particleContainer = document.getElementById('particle-container');
+        function createParticles() {
+            for (let i = 0; i < 30; i++) { 
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                particle.style.animationDelay = `${Math.random() * 2}s`;
+                particleContainer.appendChild(particle);
+
+                particle.addEventListener('animationend', () => {
+                    particle.remove();
+                });
+            }
+        }
+
+        setInterval(createParticles, 2000);
+
+        function verificarInfo() {
+            const fechaCumpleBurrito = document.getElementById('fechaCumpleBurrito').value;
+            const colorBurrito = document.getElementById('colorBurrito').value.trim().toLowerCase();
+            const fechaCumpleRatita = document.getElementById('fechaCumpleRatita').value;
+            const colorRatita = document.getElementById('colorRatita').value.trim().toLowerCase();
+            const fechaRel = document.getElementById('fechaRel').value;
+
+            if (fechaCumpleBurrito === "2002-06-04" && colorBurrito === "negro" &&
+                fechaCumpleRatita === "2005-03-05" && colorRatita === "azul" &&
+                fechaRel === "2024-06-06") {
+                mensaje.innerHTML = "¡Correcto! Espérame un segundo... 🥰";
+                setTimeout(() => {
+                    window.location.href = "andrea.html";
+                }, 5000);
+            } else {
+                mensaje.innerHTML = "😢 Datos incorrecto. Inténtalo otra vez.";
+            }
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('miModal');
+            if (event.target === modal) {
+                cerrarModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

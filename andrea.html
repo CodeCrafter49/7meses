@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dedicatoria de Corazón</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, red, #ff6699);
+            animation: backgroundPulse 3s infinite alternate;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .modal-content button {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background: darkred;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 95%;
+            max-width: 1200px;
+            height: auto;
+            padding: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+                width: 90%;
+                height: 80%;
+            }
+        }
+
+        .left,
+        .right {
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        @media (min-width: 768px) {
+
+            .left,
+            .right {
+                width: 30%;
+                margin: 0;
+            }
+        }
+
+        .left img,
+        .right video {
+            width: 80%;
+            max-width: 150px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+
+        @media (min-width: 768px) {
+
+            .left img,
+            .right video {
+                width: 140%;
+                max-width: 550px;
+                height: auto;
+                object-fit: contain;
+                border-radius: 10px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        .center {
+            width: 130%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        @media (min-width: 768px) {
+            .center {
+                width: 95%;
+            }
+        }
+
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            transform: rotate(-45deg);
+            animation: beat 1.5s infinite;
+        }
+
+        @media (min-width: 768px) {
+            .heart {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            border-radius: 50%;
+        }
+
+        @media (min-width: 768px) {
+
+            .heart::before,
+            .heart::after {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 50px;
+        }
+
+        @media (min-width: 768px) {
+
+            .heart::before {
+                top: -70px;
+                left: 0;
+            }
+
+            .heart::after {
+                top: 0;
+                left: 70px;
+            }
+        }
+
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            font-size: 24px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .message h1 {
+            font-size: 25px;
+            margin: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @media (min-width: 768px) {
+            .message h1 {
+                font-size: 36px;
+                margin: 0;
+                animation: fadeIn 2s ease-in-out;
+            }
+        }
+
+        @keyframes beat {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(-45deg);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(-45deg);
+            }
+        }
+
+        .particle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            transform: rotate(-45deg);
+            animation: explode 1.5s ease-out forwards;
+        }
+
+        .particle::before,
+        .particle::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            border-radius: 50%;
+        }
+
+        .particle::before {
+            top: -7.5px;
+            left: 0;
+        }
+
+        .particle::after {
+            top: 0;
+            left: 7.5px;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: scale(1) translate(0, 0) rotate(-45deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.5) translate(calc(var(--x) * 100px), calc(var(--y) * 100px)) rotate(-45deg);
+            }
+        }
+
+        @keyframes backgroundPulse {
+            0% {
+                background: linear-gradient(135deg, red, #ff6699);
+            }
+
+            100% {
+                background: linear-gradient(135deg, #ff6699, red);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal" id="audio-modal">
+        <div class="modal-content">
+            <h1>Activa la música 🎵</h1>
+            <button id="play-button" onclick="iniciarMusica()">🎵 Iniciar Música 🎵</button>
+        </div>
+    </div>
+
+    <audio id="background-audio" src="img/GueloDeluxe.mp3" loop></audio>
+    <div class="container">
+        <div class="left">
+            <img id="image" src="img/imagen1.jpeg" alt="Imagen" />
+        </div>
+        <div class="center">
+            <div class="heart"></div>
+            <div class="message">
+                <h1>Andrea, mi amor ❤️</h1>
+                <p>Siempre en mi corazón.</p>
+            </div>
+        </div>
+        <div class="right">
+            <video id="video" src="img/video1.mp4" autoplay loop></video>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('background-audio');
+        const playButton = document.getElementById('play-button');
+        const modal = document.getElementById('audio-modal');
+
+        function iniciarMusica() {
+            audio.play()
+                .then(() => {
+                    console.log("Música iniciada correctamente.");
+                    playButton.style.display = "none";
+                    setTimeout(() => {
+                        modal.style.display = "none";
+                    }, 3000);
+                })
+                .catch(error => {
+                    console.error("Error al iniciar la música:", error);
+                });
+        }
+
+        window.onload = () => {
+            modal.style.display = "flex";
+        };
+
+        const images = [
+            'img/imagen1.jpeg',
+            'img/imagen2.jpeg',
+            'img/imagen3.jpeg',
+            'img/imagen4.jpeg',
+            'img/imagen5.jpeg',
+            'img/imagen6.jpeg',
+            'img/imagen7.jpeg',
+            'img/imagen8.jpeg',
+            'img/imagen9.jpeg',
+            'img/imagen10.jpeg',
+            'img/imagen11.jpeg',
+            'img/imagen12.jpeg',
+            'img/imagen13.jpeg',
+            'img/imagen15.jpeg',
+            'img/imagen16.jpeg',
+            'img/imagen17.jpeg',
+            'img/imagen18.jpeg',
+            'img/imagen19.jpeg'
+        ];
+
+        const videos = [
+            'img/video1.mp4',
+            'img/video2.mp4',
+            'img/video3.mp4',
+            'img/video4.mp4',
+            'img/video5.mp4'
+        ];
+
+        let currentImageIndex = 0;
+        let currentVideoIndex = 0;
+
+        function updateImage() {
+            const imageElement = document.getElementById('image');
+            imageElement.src = images[currentImageIndex];
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+
+        function updateVideo() {
+            const videoElement = document.getElementById('video');
+            videoElement.src = videos[currentVideoIndex];
+            currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+        }
+
+        setInterval(updateImage, 4000);
+        setInterval(updateVideo, 14000);
+
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.style.setProperty('--x', Math.random() * 2 - 1);
+            particle.style.setProperty('--y', Math.random() * 2 - 1);
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 1500);
+        }
+
+        setInterval(() => {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            createParticle(x, y);
+        }, 200);
+
+    </script>
+</body>
+
+</html>
